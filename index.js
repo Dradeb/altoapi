@@ -7,7 +7,7 @@ const https = require('https');
 const fs = require('fs');
 
 const app = express();
-const PORT = process.env.PORT || 80;
+const PORT = process.env.PORT;
 const rateLimit = require("express-rate-limit");
 // Middleware
 app.use(cors());
@@ -28,7 +28,7 @@ var transporter = nodemailer.createTransport(smtpConfig);
 
 // API endpoint to send emails
 app.post('/send-email', (req, res) => {
-  const { to, subject, text } = req.body;
+  const {text } = req.body;
 
   const mailOptions = {
     from: 'form@altorcrossfit.com', // Sender address
@@ -46,4 +46,4 @@ app.post('/send-email', (req, res) => {
 });
 
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+app.listen(PORT, () => console.log(`Example app listening on port ${PORT}!`))
